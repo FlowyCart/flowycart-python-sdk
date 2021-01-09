@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.0.1'
+VERSION = '0.0.2'
 DESCRIPTION = 'Python SDK for the FlowyCart API'
-LONG_DESCRIPTION = 'My first Python package with a slightly longer description'
+LONG_DESCRIPTION = open('README.MD').read()
 
 # Setting up
 setup(
@@ -19,7 +19,7 @@ setup(
     keywords=['FlowyCart', 'api', 'payments'],
     classifiers=[
         'Development Status :: 4 - Beta',
-        'Intended Audience :: Education',
+        'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3'
