@@ -4,9 +4,9 @@ from flowycart.resources import Resource
 class Order(Resource):
 
     @staticmethod
-    def create(api_key, items, currency, success_url, cancel_url, ref_id=None, customer=None, metadata=None, currency_value=None):
+    def create(api_key, items, currency, success_url, cancel_url, ref_id=None, customer=None, metadata=None, currency_value=None, intent=False, language='en'):
         """
-        An order
+        Creates an order
         :param api_key: The API key
         :param items: The order items, expressed as an array
         :param currency: The currency
@@ -16,6 +16,8 @@ class Order(Resource):
         :param customer: The customer, represented by its id
         :param metadata: The metadata, expressed as an array
         :param currency_value: The currency value
+        :param intent: Defines whether the order is created to redirect your customer to the FlowyCart checkout page
+        :param language: The order language
         """
 
         query = """
@@ -35,7 +37,9 @@ class Order(Resource):
             'currencyValue': currency_value,
             'customerId': customer,
             'successUrl': success_url,
-            'cancelUrl': cancel_url
+            'cancelUrl': cancel_url,
+            'language': language,
+            'intent': intent
         }
 
         response = Resource.request(
