@@ -10,6 +10,4 @@
 """
 from __future__ import absolute_import
 
-api_url = 'https://api.flowycart.com/api/graphql/'
-
-from flowycart.resources import *
+from flowycart import *
