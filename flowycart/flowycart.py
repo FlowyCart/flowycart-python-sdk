@@ -74,10 +74,12 @@ class FlowyCart:
         query = """
             mutation createOrder($order: OrderInputType!) {
                 createOrder(order: $order) {
-                    id
-                    refId
-                    uuid
-                    status
+                    order {
+                      id
+                        refId
+                        uuid
+                        status
+                    }
                 }
             }
         """
