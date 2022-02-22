@@ -3,7 +3,7 @@ import requests
 
 class FlowyCart:
 
-    api_url = 'https://api.flowycart.com/api/graphql'
+    api_url = "https://api.flowycart.com/api/graphql"
 
     api_key = None
 
@@ -11,22 +11,13 @@ class FlowyCart:
         self.api_key = api_key
         self.api_url = api_url if api_url else self.api_url
 
-
-
     def _request(self, query, variables=None, operation=None):
-        data = {
-            'query': query,
-            'variables': variables,
-            'operation': operation
-        }
+        data = {"query": query, "variables": variables, "operation": operation}
 
         return requests.post(
             url=self.api_url,
             json=data,
-            headers={
-                'content-type': 'application/json',
-                'authorization': self.api_key
-            }
+            headers={"content-type": "application/json", "authorization": self.api_key},
         )
 
     def connect(self, vendor, base_url=None):
@@ -45,20 +36,27 @@ class FlowyCart:
             }
         """
 
-        variables = {
-            'vendor': vendor,
-            'baseUrl': base_url
-        }
+        variables = {"vendor": vendor, "baseUrl": base_url}
 
         response = self._request(
-            query=query,
-            variables=variables,
-            operation='connectMerchant'
+            query=query, variables=variables, operation="connectMerchant"
         )
 
         return response.json()
 
-    def create_order(self, items, currency, success_url, cancel_url, ref_id=None, customer=None, metadata=None, currency_value=None, intent=False, language='en'):
+    def create_order(
+        self,
+        items,
+        currency,
+        success_url,
+        cancel_url,
+        ref_id=None,
+        customer=None,
+        metadata=None,
+        currency_value=None,
+        intent=False,
+        language="en",
+    ):
         """
         Creates an order
         :param items: The order items, expressed as an array
@@ -85,22 +83,20 @@ class FlowyCart:
         """
 
         variables = {
-            'refId': ref_id,
-            'items': items,
-            'metadata': metadata,
-            'currency': currency,
-            'currencyValue': currency_value,
-            'customerId': customer,
-            'successUrl': success_url,
-            'cancelUrl': cancel_url,
-            'language': language,
-            'intent': intent
+            "refId": ref_id,
+            "items": items,
+            "metadata": metadata,
+            "currency": currency,
+            "currencyValue": currency_value,
+            "customerId": customer,
+            "successUrl": success_url,
+            "cancelUrl": cancel_url,
+            "language": language,
+            "intent": intent,
         }
 
         response = self._request(
-            query=query,
-            variables={'order': variables},
-            operation='createOrder'
+            query=query, variables={"order": variables}, operation="createOrder"
         )
 
         return response.json()
@@ -128,17 +124,15 @@ class FlowyCart:
         """
 
         variables = {
-            'refId': ref_id,
-            'firstName': first_name,
-            'lastName': lastname,
-            'email': email,
-            'addresses': addresses
+            "refId": ref_id,
+            "firstName": first_name,
+            "lastName": lastname,
+            "email": email,
+            "addresses": addresses,
         }
 
         response = self._request(
-            query=query,
-            variables={'order': variables},
-            operation='createOrder'
+            query=query, variables={"order": variables}, operation="createOrder"
         )
 
         return response.json()
@@ -159,10 +153,7 @@ class FlowyCart:
             }
         """
 
-        response = self._request(
-            query=query,
-            operation='createOrder'
-        )
+        response = self._request(query=query, operation="createOrder")
 
         return response.json()
 
@@ -183,9 +174,7 @@ class FlowyCart:
         """
 
         response = self._request(
-            query=query,
-            variables={'countryId': country_id},
-            operation='createOrder'
+            query=query, variables={"countryId": country_id}, operation="createOrder"
         )
 
         return response.json()
