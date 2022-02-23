@@ -52,12 +52,12 @@ class FlowyCart:
         query = gql(
             """
             query countries{
-              countries{
-                id
-                name
-                codeIso2
-                codeIso3
-              }
+                countries{
+                    id
+                    name
+                    codeIso2
+                    codeIso3
+                }
             }
         """
         )
@@ -73,11 +73,11 @@ class FlowyCart:
         query = gql(
             """
             query zones($countryId: String!){
-              zones(countryId: $countryId){
-                id
-                name
-                code
-              }
+                zones(countryId: $countryId){
+                    id
+                    name
+                    code
+                }
             }
         """
         )
