@@ -15,7 +15,7 @@ setup(
     long_description=LONG_DESCRIPTION,
     packages=find_packages(),
     license="MIT",
-    install_requires=["requests"],
+    install_requires=["gql[aiohttp]"],
     keywords=["FlowyCart", "api", "payments"],
     classifiers=[
         "Development Status :: 4 - Beta",
