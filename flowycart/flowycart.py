@@ -64,6 +64,7 @@ class FlowyCart:
         result = self.client.execute(query)
         return result
 
+    @lru_cache
     def get_zones(self, country_id: int) -> dict:
         """
         Get list of FlowyCart zones for a specified country
@@ -109,8 +110,8 @@ class FlowyCart:
                         id
                         refId
                     }
-                status
-              }
+                    status
+                }
             }
         """
         )
