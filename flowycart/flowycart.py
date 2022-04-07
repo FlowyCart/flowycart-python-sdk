@@ -20,23 +20,24 @@ class FlowyCart:
             headers={"content-type": "application/json", "authorization": self.api_key},
         )
 
-    def connect(self, vendor, base_url=None):
+    def connect(self, vendor, base_url=None, webhook_url=None):
         """
         An order
         :param vendor: The merchant name, for example "OpenCart"
         :param base_url: The vendor's API base URL, if any
+        :param webhook_url: The vendor's API webhook URL, if any
         """
 
         query = """
-            mutation connectMerchant($vendor: String!, $baseUrl: String!) {
-                connectMerchant(vendor: $vendor, baseUrl: $baseUrl) {
+            mutation connectMerchant($vendor: String!, $baseUrl: String!, $webhookUrl: String!) {
+                connectMerchant(vendor: $vendor, baseUrl: $baseUrl, webhookUrl: $webhookUrl) {
                     status
                     token
                 }
             }
         """
 
-        variables = {"vendor": vendor, "baseUrl": base_url}
+        variables = {"vendor": vendor, "baseUrl": base_url, "webhookUrl": webhook_url}
 
         response = self._request(
             query=query, variables=variables, operation="connectMerchant"
