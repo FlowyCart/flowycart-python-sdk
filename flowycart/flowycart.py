@@ -57,6 +57,7 @@ class FlowyCart:
         currency_value=None,
         intent=False,
         language="en",
+        state_id=None,
     ):
         """
         Creates an order
@@ -75,11 +76,11 @@ class FlowyCart:
         query = """
             mutation createOrder($order: OrderInputType!) {
                 createOrder(order: $order) {
+                    status
                     order {
                       id
-                        refId
-                        uuid
-                        status
+                      refId
+                      uuid
                     }
                 }
             }
@@ -96,6 +97,7 @@ class FlowyCart:
             "cancelUrl": cancel_url,
             "language": language,
             "intent": intent,
+            "stateId": state_id,
         }
 
         response = self._request(
